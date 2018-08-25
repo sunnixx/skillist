@@ -1,0 +1,3 @@
+rootProject.name = 'skillistapp'
+
+include ':app'

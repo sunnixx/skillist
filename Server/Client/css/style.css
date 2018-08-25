@@ -1,0 +1,15 @@
+form {
+    background-color: #e3e3e3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.displayProfile {
+    width: 150px;
+    height: 150px;
+    border: 5px dashed #222222;
+}

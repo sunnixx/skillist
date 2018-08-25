@@ -1,0 +1,6 @@
+#Server
+Server/node_modules/
+Server/.env
+
+#React Native
+skillistapp/node_modules/
