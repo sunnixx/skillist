@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -10,16 +11,15 @@ mongoose.connect(process.env.DB_HOST,{useNewUrlParser: true},(err) => {
     console.log(`Database connected`);
 })
 
-require('./config/passport');
-
 const app = express();
+
+require('./config/passport')
 
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname.split('/config')[0] + '/Client'));
 
-//Routes
 const mainRoutes = require('./config/routes');
 app.use(mainRoutes);
 
