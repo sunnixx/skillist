@@ -5,6 +5,8 @@ const passport = require('passport');
 
 const User = require('../Models/User');
 
+var message = '';
+
 router.post('/login',(req,res,next) => {
     passport.authenticate('local',{session:false},(err,user,info) => {
         if(err || !user) {
@@ -26,28 +28,36 @@ router.post('/login',(req,res,next) => {
 });
 
 router.get('/studentsignup',(req,res,next) => {
-    let path = __dirname.split('/config');
-    res.sendFile(`${path[0]}/Client/signupStudent.html`);
+    res.sendFile(__dirname.split('/config')[0] + '/Client/signupStudent.html');
 });
 
-router.post('/admin/signup',(req,res,next) => {
-    let user = new User();
-    user.username = req.body.username;
+router.get('/getstudents',passport.authenticate('jwt',{session: false}),(req,res,next) => {
+    res.send("This works");
+});
+
+router.get('/adminsignup',(req,res,next) => {
+    res.sendFile(__dirname.split('/config')[0] + '/Client/signupAdmin.html');
+})
+
+router.post('/adminsignup',(req,res,next) => {
+    var user = new User();
+
+    user.email = req.body.email;
     user.password = req.body.password;
-    
-    User.find({username: user.username},(err,user) => {
-        if(err) return next(err);
 
-        if(user.length > 0) {
-            return next();
+    user.save(function(err) {
+        if(err) {
+            message = 'Email already exists';
+            res.redirect('/adminsignup');
+            return;
         }
+        res.redirect('/adminsignup');
+    });
+});
 
-        if(!user) {
-            user.save((err) => {
-                if(err) return next(err);
-            })
-        }
-    })
+router.get('/getmessage',(req,res,next) => {
+    res.json({message: message});
+    message = '';
 })
 
 module.exports = router;

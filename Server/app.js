@@ -12,10 +12,6 @@ mongoose.connect(process.env.DB_HOST,{useNewUrlParser: true},(err) => {
 
 require('./config/passport');
 
-//Import models
-const User = require('./Models/User');
-const Student = require('./Models/Students');
-
 const app = express();
 
 //Middleware
