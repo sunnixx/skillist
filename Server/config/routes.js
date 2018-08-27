@@ -8,6 +8,7 @@ const User = require('../Models/User');
 var message = '';
 
 router.post('/login', async (req, res, next) => {
+    console.log(req.body);
     passport.authenticate('local', async (err, user, info) => {
 
         try {
@@ -22,7 +23,7 @@ router.post('/login', async (req, res, next) => {
 
                 const token = jwt.sign({ user: body }, process.env.TOKEN);
 
-                return res.json({ token,user });
+                return res.json({ token,isLogged: true });
             })
         } catch (err) {
             return next(err);

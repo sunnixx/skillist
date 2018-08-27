@@ -1,20 +1,25 @@
-const app = {};
-import url from '../shared';
+import { AsyncStorage } from 'react-native';
 
-app.login = async function(username, password) {
-    await fetch(`${url}/login`,{
+const app = {};
+import shared from '../shared';
+
+app.login = async function (email, password) {
+
+    await fetch(`${shared.url}/login`,{
         method: 'POST',
         headers: {
             'content-type' : 'application/json'
         },
-        body: JSON.stringify({'username' : username, 'password': password})
-    })
-    .then(response => {
+        body: JSON.stringify({email,password})
+    }).then(response => {
+        
         response.json().then(message => {
             if(message.isLogged === true) {
-                
+                AsyncStorage.setItem('token',message.token);
             }
         })
+    }).catch(err => {
+        if(err) throw new Error(err)
     })
 }
 
