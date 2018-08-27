@@ -31,7 +31,7 @@ class LoginScreen extends Component {
     checkLoggedIn() {
         AsyncStorage.getItem('token').then(response => {
             if(response !== null) {
-                this.props.navigation.navigate('DashboardScreen');
+                this.props.navigation.navigate('DrawerStack');
             }
         });
 
