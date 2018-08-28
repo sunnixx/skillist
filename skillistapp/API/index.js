@@ -23,4 +23,21 @@ app.login = async function (email, password) {
     })
 }
 
+app.searchStudent = async function(student) {
+    await fetch(`${shared.url}/search`,{
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({search})
+    }).then(response => {
+        response.json().then(message => {
+            AsyncStorage.setItem('students',JSON.stringify(message.students));
+            AsyncStorage.setItem('search','true');
+        })
+    }).catch(err => {
+        if(err) throw new Error(err);
+    })
+}
+
 module.exports = app;

@@ -8,11 +8,13 @@ import LoginScreen from './Screens/Login';
 import DashboardScreen from './Screens/Dashboard';
 import LogoutScreen from './Screens/Logout';
 import SearchFilterScreen from './Screens/SearchFilter';
+import ResultScreen from './Screens/Result';
 
 const DrawerStack = DrawerNavigator({
   Dashboard: {screen: DashboardScreen},
   Logout: {screen: LogoutScreen},
-  SearchFilter: {screen: SearchFilterScreen}
+  SearchFilter: {screen: SearchFilterScreen},
+  Result: {screen: ResultScreen}
 })
 
 const DrawerNavigation = createStackNavigator({
