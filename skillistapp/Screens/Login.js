@@ -63,7 +63,7 @@ class LoginScreen extends Component {
                         </Item>
                         <Item floatingLabel>
                             <Label>Password</Label>
-                            <Input onChangeText={(e) => this.password = e} />
+                            <Input onChangeText={(e) => this.password = e} secureTextEntry={true} />
                         </Item>
                     </Form>
 

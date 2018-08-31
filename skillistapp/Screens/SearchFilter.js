@@ -21,22 +21,23 @@ class SearchFilterScreen extends Component {
 
     handleSearch() {
         this.props.navigation.navigate('Result');
-        // if(this.search !== '' ) {
-        //     //Search item code
+        
+        if(this.search !== '' ) {
+            //Search item code
 
-        //     app.searchStudent(this.search);
+            app.searchStudent(this.search);
 
-        //     setTimeout(function() {
-        //         this.checkSearch()
-        //     }.bind(this),2000)
+            setTimeout(function() {
+                this.checkSearch()
+            }.bind(this),2000)
 
-        // } else {
-        //     ToastAndroid.showWithGravity(
-        //         'Search field cannot be empty',
-        //         ToastAndroid.SHORT,
-        //         ToastAndroid.CENTER
-        //       );
-        // }
+        } else {
+            ToastAndroid.showWithGravity(
+                'Search field cannot be empty',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+              );
+        }
     }
 
     checkSearch() {

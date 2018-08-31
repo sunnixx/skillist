@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button,Text, Icon} from 'native-base';
+import {Button,Text, Icon, Root} from 'native-base';
 import {TouchableOpacity} from 'react-native';
 import {createStackNavigator, DrawerNavigator} from 'react-navigation';
 
@@ -39,4 +39,7 @@ const PrimaryNav = createStackNavigator({
   initialRouteName: 'LoginStack'
 });
 
-export default PrimaryNav;
+export default () => 
+  <Root>
+    <PrimaryNav />
+  </Root>
