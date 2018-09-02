@@ -1,3 +1,5 @@
+var URL = 'http://localhost:3000';
+
 //Check for any message
 fetch('http://localhost:3000/getmessage')
     .then(response => {
@@ -91,7 +93,7 @@ $('#studentForm').on('submit', (e) => {
         startupValues.push(startups[i].value);
     }
 
-    fetch('http://localhost:3000/studentSignup', {
+    fetch(`${URL}/studentSignup`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

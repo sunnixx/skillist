@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Content, Text} from 'native-base';
-import {AsyncStorage} from 'react-native';
 
 class ResultScreen extends Component {
 
@@ -9,10 +8,12 @@ class ResultScreen extends Component {
     }
 
     render() {
+        const {navigation} = this.props;
+        const student = navigation.getParam('student','false');
         return (
             <Container>
                 <Content>
-                    <Text>Result Screen</Text>
+                    <Text>{student.personalInformation[0].name}</Text>
                 </Content>
             </Container>
         )

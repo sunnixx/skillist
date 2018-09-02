@@ -39,8 +39,6 @@ router.get('/studentsignup', (req, res, next) => {
 router.post('/studentsignup',(req,res,next) => {
     let student = new Student();
 
-    console.log(req.body.startupValues);
-
     student.personalInformation.rollno = req.body.rollNo;
     student.personalInformation.name = req.body.name;
     student.personalInformation.fatherName = req.body.fatherName;
@@ -108,10 +106,10 @@ router.post('/adminsignup', (req, res, next) => {
     });
 });
 
-router.post('/searchStudents',passport.authenticate('jwt',{session: false}), (req,res,next) => {
+router.post('/searchStudents', (req,res,next) => {
     let search = req.body.search;
 
-    Student.find({personalInformation: {studentName: search}},(err,student) => {
+    Student.find({'personalInformation': {"$elemMatch" : {'name' : search}}},(err,student) => {
         if(err) return next(err);
 
         if(student.length <= 0) {

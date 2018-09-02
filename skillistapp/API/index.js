@@ -24,12 +24,14 @@ app.login = async function (email, password) {
 }
 
 app.searchStudent = async function(student) {
-    await fetch(`${shared.url}/search`,{
+    student = student.toLowerCase();
+    
+    await fetch(`${shared.url}/searchStudents`,{
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({search})
+        body: JSON.stringify({search:student})
     }).then(response => {
         response.json().then(message => {
             AsyncStorage.setItem('students',JSON.stringify(message.students));

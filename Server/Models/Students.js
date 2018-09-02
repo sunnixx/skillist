@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
-    personalInformation: {
+    personalInformation: [{
         rollno: {type:String, lowercase: true, unique:true},
         studentName: {type: String, lowercase: true},
         fatherName: {type: String, lowercase: true},
@@ -13,19 +13,19 @@ const StudentSchema = new Schema({
         batch: {type:String, lowercase: true},
         phone: {type:String, lowercase: true},
         email: {type:String, lowercase:true}
-    },
-    socialmedia: {
+    }],
+    socialmedia: [{
         facebook: {type:String, lowercase: true},
         instagram: {type:String, lowercase: true},
         linkedIn: {type:String, lowercase: true},
         twitter: {type:String, lowercase: true}
-    },
-    professionalInformation: {
+    }],
+    professionalInformation: [{
         degrees: {type: Array},
         certificates: {type:Array},
         programmes: {type:Array}
-    },
-    achievements: {
+    }],
+    achievements: [{
         projects: {type:Array},
         startups: {type:Array},
         funding: {type:Boolean},
@@ -41,7 +41,7 @@ const StudentSchema = new Schema({
         photo: {type: String},
         scholarships: {type: Boolean},
         industrailFundings: {type:Boolean}
-    }
+    }]
 });
 
 module.exports = mongoose.model('Student',StudentSchema);
