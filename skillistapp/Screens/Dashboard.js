@@ -9,14 +9,7 @@ import dashboardbg from '../assets/images/dashboard-bg.jpg';
 class DashboardScreen extends Component {
 
     static navigationOptions = {
-        title: 'Home',
-        headerStyle: {
-            backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
+        header: null
     }
 
     constructor(props) {
@@ -34,7 +27,7 @@ class DashboardScreen extends Component {
         return (
             <Container>
                 <Content>
-                    <ImageBackground source={dashboardbg} style={{ flex: 1, height: '100%', width: '100%' }}>
+                    <ImageBackground source={dashboardbg} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
 
                         <TouchableOpacity onPress={this.handleInsights} style={styles.circle}>
                             <ImageBackground style={{ height: 200, width: 200 }}>
@@ -47,19 +40,19 @@ class DashboardScreen extends Component {
                             <ListItem>
                                 <CheckBox checked={true} />
                                 <Body>
-                                    <Text>Internships</Text>
+                                    <Text style={styles.innerText}>Internships</Text>
                                 </Body>
                             </ListItem>
                             <ListItem>
                                 <CheckBox checked={true} />
                                 <Body>
-                                    <Text>Scholarships</Text>
+                                    <Text style={styles.innerText}>Scholarships</Text>
                                 </Body>
                             </ListItem>
                             <ListItem>
                                 <CheckBox checked={true} />
                                 <Body>
-                                    <Text>Jobs / Postings</Text>
+                                    <Text style={styles.innerText}>Jobs / Postings</Text>
                                 </Body>
                             </ListItem>
                         </Content>
@@ -80,10 +73,11 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         borderRadius: 200 / 2,
-        borderWidth: 1,
         borderColor: '#d6d7da',
-        marginLeft: '25%',
         marginTop: '10%',
+    },
+    innerText: {
+        color: '#fafafa'  
     },
     imagebg: {
         width: 200,
@@ -103,12 +97,11 @@ const styles = StyleSheet.create({
         height: 150,
         borderWidth: 1,
         borderColor: '#d6d7da',
-        marginLeft: '10%',
         marginTop: '10%'
     },
     nextButton: {
-        marginLeft: '40%',
-        marginTop: '5%'
+        marginTop: '10%',
+        marginBottom: '32%'
     }
 })
 

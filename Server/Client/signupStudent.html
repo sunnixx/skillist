@@ -25,7 +25,7 @@
 
     <div class="row">
         <div class='col-md-6 col-md-offset-3'>
-            <form action="/studentsignup" method="POST" class="form-background">
+            <form id='studentForm' method="POST" class="form-background">
                 <h3>Personal Information</h3>
                 <input type="text" class="form-control" name="rollno" placeholder="Roll No" /> <br>
                 <input type="text" class="form-control" name="name" placeholder="Full Name" /> <br>
@@ -49,45 +49,45 @@
 
                 <h3>Professional Information</h3>
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-10" id='div-degree'>
                         <input type="text" placeholder="Degree" name="degree" class="form-control degree" />
                     </div>
                     <div class="col-md-1">
-                        <button onclick="addFields(this.id)" id="degree" class="btn btn-default">+</button>
+                        <button type='button' id="degree" class="btn btn-default">+</button>
                     </div>
                 </div> <br>
                 <div class="row">
-                    <div class="col-md-10">
-                        <input type="text" placeholder="Certificates" name="cert01" class="form-control" />
+                    <div class="col-md-10" id='div-certificates'>
+                        <input type="text" placeholder="Certificates" name="cert01" class="form-control certificates" />
                     </div>
                     <div class="col-md-1">
-                        <button onclick="addFields(this.id)" id="certificates" class="btn btn-default">+</button>
+                        <button id="certificates" class="btn btn-default" type="button">+</button>
                     </div>
                 </div> <br>
                 <div class="row">
-                    <div class="col-md-10">
-                        <input type="text" placeholder="Programmes" name="cert01" class="form-control" />
+                    <div class="col-md-10" id='div-programmes'>
+                        <input type="text" placeholder="Programmes" name="cert01" class="form-control programmes" />
                     </div>
                     <div class="col-md-1">
-                        <button onclick="addFields(this.id)" id="programmes" class="btn btn-default">+</button>
+                        <button id="programmes" class="btn btn-default" type="button">+</button>
                     </div>
                 </div>
 
                 <h3>Achievements</h3>
                 <div class="row">
-                    <div class="col-md-10">
-                        <input type="text" placeholder="Projects" name="cert01" class="form-control" />
+                    <div class="col-md-10" id='div-projects'>
+                        <input type="text" placeholder="Projects" name="cert01" class="form-control projects" />
                     </div>
                     <div class="col-md-1">
-                        <button onclick="addFields(this.id)" id="projects" class="btn btn-default">+</button>
+                        <button id="projects" class="btn btn-default" type="button">+</button>
                     </div>
                 </div> <br>
                 <div class="row">
-                    <div class="col-md-10">
-                        <input type="text" placeholder="Startups" name="startups" class="form-control" />
+                    <div class="col-md-10" id='div-startups'>
+                        <input type="text" placeholder="Startups" name="startups" class="form-control startups" />
                     </div>
                     <div class="col-md-1">
-                        <button onclick="addFields(this.id)" id="startups" class="btn btn-default">+</button>
+                        <button id="startups" class="btn btn-default" type="button">+</button>
                     </div>
                 </div> <br>
 
@@ -161,6 +161,12 @@
                     <option value="1">Yes</option>
                 </select> <br>
                 
+                <div class="row">
+                    <div class='col-md-4 col-md-offset-4'>
+                        <button type='submit' class='btn btn-primary' style="width:100%">Submit</button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>

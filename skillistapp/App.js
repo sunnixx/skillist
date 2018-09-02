@@ -22,7 +22,10 @@ const DrawerNavigation = createStackNavigator({
 },{
   headerMode: 'float',
   navigationOptions: ({navigation}) => ({
-    headerLeft: <TouchableOpacity style={{borderWidth: 1,borderColor: '#e3e3e3',padding: 10}} onPress={() => navigation.toggleDrawer()}><Icon name='menu' /></TouchableOpacity>
+    headerLeft: <TouchableOpacity style={{padding: 10}} onPress={() => navigation.toggleDrawer()}><Icon name='menu' style={{color: '#fafafa'}} /></TouchableOpacity>,
+    headerStyle: {
+      backgroundColor: '#9b59b6'
+    }
   })
 });
 

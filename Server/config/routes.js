@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 const User = require('../Models/User');
+const Student = require('../Models/Students');
 
 var message = '';
 
@@ -35,6 +36,23 @@ router.get('/studentsignup', (req, res, next) => {
     res.sendFile(__dirname.split('/config')[0] + '/Client/signupStudent.html');
 });
 
+router.post('/studentsignup',(req,res,next) => {
+    let rollNo = req.body.rollno;
+    let name = req.body.name;
+    let fatherName = req.body.fatherName;
+    let cnic = req.body.cnic;
+    let address = req.body.address;
+    let section = req.body.section;
+    let gender = req.body.gender;
+    let batch = req.body.batch;
+    let phone = req.body.phone;
+    let email = req.body.email;
+    let facebook = req.body.facebook;
+    let twitter = req.body.twitter;
+    let linkedin = req.body.linkedin;
+    let instagram = req.body.instagram;
+})
+
 router.get('/getstudents', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     res.send("This works");
 });
@@ -58,6 +76,20 @@ router.post('/adminsignup', (req, res, next) => {
         res.redirect('/adminsignup');
     });
 });
+
+router.post('/searchStudents',passport.authenticate('jwt',{session: false}), (req,res,next) => {
+    let search = req.body.search;
+
+    Student.find({personalInformation: {studentName: search}},(err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No students were found'});
+        } else {
+            res.json({students: student});
+        }
+    })
+})
 
 router.get('/getmessage', (req, res, next) => {
     res.json({ message: message });
