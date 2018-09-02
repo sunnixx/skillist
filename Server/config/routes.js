@@ -37,20 +37,51 @@ router.get('/studentsignup', (req, res, next) => {
 });
 
 router.post('/studentsignup',(req,res,next) => {
-    let rollNo = req.body.rollno;
-    let name = req.body.name;
-    let fatherName = req.body.fatherName;
-    let cnic = req.body.cnic;
-    let address = req.body.address;
-    let section = req.body.section;
-    let gender = req.body.gender;
-    let batch = req.body.batch;
-    let phone = req.body.phone;
-    let email = req.body.email;
-    let facebook = req.body.facebook;
-    let twitter = req.body.twitter;
-    let linkedin = req.body.linkedin;
-    let instagram = req.body.instagram;
+    let student = new Student();
+
+    console.log(req.body.startupValues);
+
+    student.personalInformation.rollno = req.body.rollNo;
+    student.personalInformation.name = req.body.name;
+    student.personalInformation.fatherName = req.body.fatherName;
+    student.personalInformation.cnic = req.body.cnic;
+    student.personalInformation.address = req.body.address;
+    student.personalInformation.section = req.body.section;
+    student.personalInformation.gender = req.body.gender;
+    student.personalInformation.batch = req.body.batch;
+    student.personalInformation.phone = req.body.phone;
+    student.personalInformation.email = req.body.email;
+
+    student.socialmedia.facebook = req.body.facebook;
+    student.socialmedia.twitter = req.body.twitter;
+    student.socialmedia.linkedin = req.body.linkedin;
+    student.socialmedia.instagram = req.body.instagram;
+
+    student.professionalInformation.degrees = req.body.degreeValues;
+    student.professionalInformation.certificates = req.body.certificateValues;
+    student.professionalInformation.programmes = req.body.programmeValues;
+
+    student.achievements.projects = req.body.projectValues;
+    student.achievements.startups = req.body.startupValues;
+    student.achievements.funding = req.body.funding;
+    student.achievements.recCertifications = req.body.recCertifications;
+    student.achievements.scholarships = req.body.scholarships;
+    student.achievements.industrailFunding = req.body.industrailFunding;
+    student.achievements.gpa = req.body.gpa;
+    student.achievements.groupName = req.body.groupName;
+    student.achievements.projectCollaboration = req.body.projectCollaboration;
+    student.achievements.researcher = req.body.researcher;
+    student.achievements.locJournal = req.body.locJournal;
+    student.achievements.intJournal = req.body.intJournal;
+    student.achievements.sCourse = req.body.sCourse;
+    student.achievements.interships = req.body.internships;
+
+    student.save((err) => {
+        if(err) return next(err);
+
+        res.json({msg: 'Data has been saved'});
+    })
+
 })
 
 router.get('/getstudents', passport.authenticate('jwt', { session: false }), (req, res, next) => {

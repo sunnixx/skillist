@@ -11,7 +11,7 @@ const StudentSchema = new Schema({
         section: {type:Number, lowercase: true},
         gender: {type:String, lowercase: true},
         batch: {type:String, lowercase: true},
-        phoneNo: {type:String, lowercase: true},
+        phone: {type:String, lowercase: true},
         email: {type:String, lowercase:true}
     },
     socialmedia: {
@@ -21,18 +21,18 @@ const StudentSchema = new Schema({
         twitter: {type:String, lowercase: true}
     },
     professionalInformation: {
-        degree: {type: Array},
+        degrees: {type: Array},
         certificates: {type:Array},
-        programme: {type:Array}
+        programmes: {type:Array}
     },
     achievements: {
         projects: {type:Array},
-        Startups: {type:Boolean},
+        startups: {type:Array},
         funding: {type:Boolean},
-        GPA: {type:Number},
+        gpa: {type:Number},
         groupName: {type:String},
         projectCollaboration: {type:Boolean},
-        ActiveResearcher: {type:Boolean},
+        researcher: {type:Boolean},
         locJournal: {type:Boolean},
         intJournal: {type:Boolean},
         sCourse: {type:Boolean},
