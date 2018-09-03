@@ -27,17 +27,38 @@ class DashboardScreen extends Component {
         return (
             <Container>
                 <Content>
-                    <ImageBackground source={dashboardbg} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+                    <ImageBackground source={dashboardbg} style={{ height: '100%', width: '100%' }}>
 
-                        <TouchableOpacity onPress={this.handleInsights} style={styles.circle}>
-                            <ImageBackground style={{ height: 200, width: 200 }}>
-                                <Image source={insightsBg} style={{ height: 200, width: 200, position: "absolute", borderRadius: 200 / 2 }} />
-                                <Text style={styles.insightText}>Student Insights</Text>
-                            </ImageBackground>
-                        </TouchableOpacity>
+                        <Content contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
+                            <TouchableOpacity onPress={this.handleInsights} style={styles.circle}>
+                                <ImageBackground style={{ height: 200, width: 200 }}>
+                                    <Image source={insightsBg} style={{ height: 200, width: 200, position: "absolute", borderRadius: 200 / 2 }} />
+                                    <Text style={styles.insightText}>Student Insights</Text>
+                                </ImageBackground>
+                            </TouchableOpacity>
+                        </Content>
 
-                        <Content style={styles.main}>
-                            <ListItem>
+
+                        <Content contentContainerStyle={{ flex: 1, flexDirection: 'column' }}>
+                            <TouchableOpacity>
+                            <Content style={{ borderColor: '#ffffff', borderWidth: 1, backgroundColor: '#1abc9c', width: '100%', height: 100, marginBottom: 10, marginTop: 20, padding: 10 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 30, textAlign: 'center', color: '#ffffff', marginTop: 15 }}>Internship</Text>
+                            </Content>
+                            </TouchableOpacity>
+                            
+                            <TouchableOpacity>
+                            <Content style={{ borderColor: '#ffffff', borderWidth: 1, backgroundColor: '#27ae60', width: '100%', height: 100, marginBottom: 10, marginTop: 20, padding: 10 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 30, textAlign: 'center', color: '#ffffff', marginTop: 15 }}>Scholarships</Text>
+                            </Content>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
+                            <Content style={{ borderColor: '#ffffff', borderWidth: 1, backgroundColor: '#e74c3c', width: '100%', height: 100, marginBottom: 10, marginTop: 20, padding: 10 }}>
+                                <Text style={{ fontWeight: 'bold', fontSize: 30, textAlign: 'center', color: '#ffffff', marginTop: 15 }}>Job posting</Text>
+                            </Content>
+                            </TouchableOpacity>
+                        </Content>
+                        {/* <ListItem>
                                 <CheckBox checked={true} />
                                 <Body>
                                     <Text style={styles.innerText}>Internships</Text>
@@ -54,13 +75,12 @@ class DashboardScreen extends Component {
                                 <Body>
                                     <Text style={styles.innerText}>Jobs / Postings</Text>
                                 </Body>
-                            </ListItem>
-                        </Content>
-                        <Content style={styles.nextButton}>
+                            </ListItem> */}
+                        {/* <Content style={styles.nextButton}>
                             <Button style={{ width: 100 }} onPress={() => {this.props.navigation.navigate('Result')}}>
                                 <Text style={{ marginLeft: '15%' }}>Next</Text>
                             </Button>
-                        </Content>
+                        </Content> */}
                     </ImageBackground>
                 </Content>
             </Container>
@@ -77,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: '10%',
     },
     innerText: {
-        color: '#fafafa'  
+        color: '#fafafa'
     },
     imagebg: {
         width: 200,
