@@ -57,7 +57,7 @@ class DashboardScreen extends Component {
                             </ListItem>
                         </Content>
                         <Content style={styles.nextButton}>
-                            <Button style={{ width: 100 }}>
+                            <Button style={{ width: 100 }} onPress={() => {this.props.navigation.navigate('Result')}}>
                                 <Text style={{ marginLeft: '15%' }}>Next</Text>
                             </Button>
                         </Content>
