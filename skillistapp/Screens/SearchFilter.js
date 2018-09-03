@@ -81,7 +81,7 @@ class SearchFilterScreen extends Component {
                     </Content>
                     <Content style={{ marginTop: '10%' }} contentContainerStyle={{ alignContent: 'center', justifyContent: 'center', flexDirection: 'row', }}>
                         <Button style={{ marginRight: 20 }} onPress={this.handleSearch}><Text>Search</Text></Button>
-                        <Button onPress={this.handleFilter}><Text>Filter</Text></Button>
+                        <Button onPress={() => {this.props.navigation.navigate('Filter')}}><Text>Filter</Text></Button>
                     </Content>
 
                     <Content>

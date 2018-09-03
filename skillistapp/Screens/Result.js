@@ -8,6 +8,10 @@ import avatar from '../assets/images/default-avatar.jpg';
 
 class ResultScreen extends Component {
 
+    static navigationOptions = {
+        drawerLabel: () => null
+    }
+
     constructor(props) {
         super(props);
     }
