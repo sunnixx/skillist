@@ -120,6 +120,90 @@ router.post('/searchStudents', (req,res,next) => {
     })
 })
 
+router.post('/searchByName',(req,res,next) => {
+    let name = req.body.name;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'name' : name}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
+router.post('/searchByBatch',(req,res,next) => {
+    let batch = req.body.batch;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'batch' : batch}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
+router.post('/searchByEmail',(req,res,next) => {
+    let email = req.body.email;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'email' : email}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
+router.post('/searchByCnic',(req,res,next) => {
+    let cnic = req.body.cnic;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'cnic' : cnic}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
+router.post('/searchByGpa',(req,res,next) => {
+    let gpa = req.body.gpa;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'gpa' : gpa}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
+router.post('/searchByGroup',(req,res,next) => {
+    let group = req.body.group;
+
+    Student.find({'personalInformation' : {'$elemMatch' : {'group' : group}}}, (err,student) => {
+        if(err) return next(err);
+
+        if(student.length <= 0) {
+            res.json({students: false, message: 'No student(s) were found'});
+        } else {
+            res.json({students: student});
+        }
+    });
+});
+
 router.get('/getmessage', (req, res, next) => {
     res.json({ message: message });
     message = '';

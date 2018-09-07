@@ -32,7 +32,7 @@ const DrawerNavigation = createStackNavigator({
 });
 
 const LoginStack = createStackNavigator({
-  Login: {screen:LoginScreen}
+  Login: {screen:FilterScreen}
 });
 
 const PrimaryNav = createStackNavigator({

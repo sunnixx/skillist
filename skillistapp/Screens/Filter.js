@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Container, Content, Text, List, ListItem, Toast, Left, Input, Fab, Icon, CheckBox, Body, Thumbnail, Label } from 'native-base';
+import { Container, Content, Text, List, ListItem, Button, Toast, Left, Input, Fab, Icon, CheckBox, Body, Thumbnail, Label } from 'native-base';
 import { ImageBackground } from 'react-native';
 
 import bg from '../assets/images/dashboard-bg.jpg';
+
+import app from '../API';
 
 class FilterScreen extends Component {
 
     constructor(props) {
         super(props);
 
-        this.filterData = [];
+        this.filterCheckData = [];
 
         //Filter class variables
         this.name = '', this.batch = '', this.cnic = '', this.email = '', this.gpa = '', this.group = '';
@@ -51,14 +53,57 @@ class FilterScreen extends Component {
     }
 
     handleSearch() {
-        let name, batch;
+        
+        let name = this.name; 
+        let cnic = this.cnic;
+        let batch = this.batch;
+        let group = this.group;
+        let gpa = this.gpa;
+        let email = this.email;
+        
+        this.filterCheckData = [];
 
-        if (this.name !== '') {
-            name = this.name;
+        if(name !== '') {
+            this.filterCheckData.push({name: name});
         }
-        if (this.batch !== '') {
-            batch = this.batch;
+
+        if(cnic !== '') {
+            this.filterCheckData.push({cnic: cnic});
         }
+
+        if(batch !== '') {
+            this.filterCheckData.push({batch :batch});
+        }
+
+        if(group !== '') {
+            this.filterCheckData.push({group: group});
+        }
+
+        if(gpa !== '') {
+            this.filterCheckData.push({gpa: gpa});
+        }
+
+        if(email !== '') {
+            this.filterCheckData.push({email: email});
+        }
+
+
+        this.filterCheckData.push({
+            bachelors: this.state.bachelors,
+            certification: this.state.certification,
+            funding: this.state.funding,
+            industrailFunding: this.state.industrailFunding,
+            internship: this.state.internship,
+            intJournal: this.state.intJournal,
+            locJournal: this.state.locJournal,
+            masters: this.state.masters,
+            phd: this.state.phd,
+            postdoc: this.state.postdoc,
+            programmes: this.state.programmes,
+            project: this.state.project
+        })
+
+        app.searchByFilter(this.filterCheckData);
     }
 
     handleBachelors() {
@@ -67,6 +112,7 @@ class FilterScreen extends Component {
         } else if (this.state.bachelors === false) {
             this.setState({ bachelors: true });
         }
+
     }
 
     handleMasters() {
@@ -184,28 +230,34 @@ class FilterScreen extends Component {
                         <Content style={{ marginTop: 20, width: '90%', backgroundColor: 'rgba(52, 52, 52, 0.8)' }}>
 
                             <List>
-                                <ListItem>
+                                <ListItem >
                                     <Input placeholder="Enter Name" onChangeText={(e) => this.name = e} />
+                                    <Button onPress={() => app.searchByName(this.name)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Batch" onChangeText={(e) => this.batch = e} />
+                                    <Button onPress={() => app.searchByBatch(this.batch)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Cnic e.g. 12345-1234567-1" onChangeText={(e) => this.cnic = e} />
+                                    <Button onPress={() => app.searchByCnic(this.cnic)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Email" onChangeText={(e) => this.email = e} />
+                                    <Button onPress={() => app.searchByEmail(this.email)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter GPA" onChangeText={(e) => this.gpa = e} />
+                                    <Button onPress={() => app.searchByGpa(this.gpa)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Group Name" onChangeText={(e) => this.group = e} />
+                                    <Button onPress={() => app.searchByGroup(this.group)}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
@@ -271,7 +323,7 @@ class FilterScreen extends Component {
                                     </Body>
                                     <CheckBox onPress={this.handleIndustrailFunding} checked={this.state.industrailFunding} />
                                     <Body>
-                                        <Text style={{ color: '#ffffff' }}>Industrail Funding</Text>
+                                        <Text style={{ color: '#ffffff' }}>Industrial Funding</Text>
                                     </Body>
                                 </ListItem>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
