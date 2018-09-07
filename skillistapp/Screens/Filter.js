@@ -9,20 +9,154 @@ class FilterScreen extends Component {
     constructor(props) {
         super(props);
 
+        this.filterData = [];
 
-        this.state = { internship: false, funding: false }
+        //Filter class variables
+        this.name = '', this.batch = '', this.cnic = '', this.email = '', this.gpa = '', this.group = '';
+
+
+        this.state = {
+            internship: false,
+            funding: false,
+            bachelors: false,
+            masters: false,
+            postdoc: false,
+            phd: false,
+            certification: false,
+            programmes: false,
+            project: false,
+            startup: false,
+            scholarship: false,
+            industrailFunding: false,
+            locJournal: false,
+            intJournal: false
+
+        }
+
         this.handleSearch = this.handleSearch.bind(this);
         this.handleInternship = this.handleInternship.bind(this);
         this.handleFunding = this.handleFunding.bind(this);
+        this.handleBachelors = this.handleBachelors.bind(this);
+        this.handleMasters = this.handleMasters.bind(this);
+        this.handlePhd = this.handlePhd.bind(this);
+        this.handleCertification = this.handleCertification.bind(this);
+        this.handlePostdoc = this.handlePostdoc.bind(this);
+        this.handleProgrammes = this.handleProgrammes.bind(this);
+        this.handleProjects = this.handleProjects.bind(this);
+        this.handleStartups = this.handleStartups.bind(this);
+        this.handleScholarships = this.handleScholarships.bind(this);
+        this.handleIndustrailFunding = this.handleIndustrailFunding.bind(this);
+        this.handleLocJournal = this.handleLocJournal.bind(this);
+        this.handleIntJournal = this.handleIntJournal.bind(this);
     }
 
     handleSearch() {
-        Toast.show({
-            text: 'This will show the result',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Got it!'
-        })
+        let name, batch;
+
+        if (this.name !== '') {
+            name = this.name;
+        }
+        if (this.batch !== '') {
+            batch = this.batch;
+        }
+    }
+
+    handleBachelors() {
+        if (this.state.bachelors === true) {
+            this.setState({ bachelors: false });
+        } else if (this.state.bachelors === false) {
+            this.setState({ bachelors: true });
+        }
+    }
+
+    handleMasters() {
+        if (this.state.masters === true) {
+            this.setState({ masters: false });
+        } else if (this.state.masters === false) {
+            this.setState({ masters: true });
+        }
+    }
+
+    handlePhd() {
+        if (this.state.phd === true) {
+            this.setState({ phd: false });
+        } else if (this.state.phd === false) {
+            this.setState({ phd: true });
+        }
+    }
+
+    handleCertification() {
+        if (this.state.certification === true) {
+            this.setState({ certification: false });
+        } else if (this.state.certification === false) {
+            this.setState({ certification: true });
+        }
+    }
+
+    handlePostdoc() {
+        if (this.state.postdoc === true) {
+            this.setState({ postdoc: false });
+        } else if (this.state.postdoc === false) {
+            this.setState({ postdoc: true });
+        }
+    }
+
+    handleProgrammes() {
+        if (this.state.programmes === true) {
+            this.setState({ programmes: false });
+        } else if (this.state.programmes === false) {
+            this.setState({ programmes: true });
+        }
+    }
+
+    handleProjects() {
+        if (this.state.project === true) {
+            this.setState({ project: false });
+        } else if (this.state.project === false) {
+            this.setState({ project: true });
+        }
+    }
+
+    handleStartups() {
+
+        if (this.state.startup === true) {
+            this.setState({ startup: false });
+        } else if (this.state.startup === false) {
+            this.setState({ startup: true });
+        }
+
+    }
+
+    handleIndustrailFunding() {
+        if (this.state.industrailFunding === true) {
+            this.setState({ industrailFunding: false });
+        } else if (this.state.industrailFunding === false) {
+            this.setState({ industrailFunding: true });
+        }
+    }
+
+    handleScholarships() {
+        if (this.state.scholarship === true) {
+            this.setState({ scholarship: false });
+        } else if (this.state.scholarship === false) {
+            this.setState({ scholarship: true });
+        }
+    }
+
+    handleLocJournal() {
+        if (this.state.locJournal === true) {
+            this.setState({ locJournal: false });
+        } else if (this.state.locJournal === false) {
+            this.setState({ locJournal: true });
+        }
+    }
+
+    handleIntJournal() {
+        if (this.state.intJournal === true) {
+            this.setState({ intJournal: false });
+        } else if (this.state.intJournal === false) {
+            this.setState({ intJournal: true });
+        }
     }
 
     handleInternship() {
@@ -88,11 +222,11 @@ class FilterScreen extends Component {
                                 <Label style={{ paddingLeft: 20, color: '#ffffff', fontWeight: 'bold' }}>Degrees: </Label>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
                                     <Content contentContainerStyle={{ flex: 1, flexDirection: 'row' }}>
-                                        <CheckBox />
+                                        <CheckBox onPress={this.handleBachelors} checked={this.state.bachelors} />
                                         <Body>
                                             <Text style={{ color: '#ffffff' }}>Bachelors</Text>
                                         </Body>
-                                        <CheckBox />
+                                        <CheckBox onPress={this.handleMasters} checked={this.state.masters} />
                                         <Body>
                                             <Text style={{ color: '#ffffff' }}>Masters</Text>
                                         </Body>
@@ -100,52 +234,52 @@ class FilterScreen extends Component {
                                 </ListItem>
                                 <ListItem>
                                     <Content contentContainerStyle={{ flex: 1, flexDirection: 'row' }}>
-                                        <CheckBox />
+                                        <CheckBox onPress={this.handlePhd} checked={this.state.phd} />
                                         <Body>
                                             <Text style={{ color: '#ffffff' }}>Phd</Text>
                                         </Body>
-                                        <CheckBox />
+                                        <CheckBox onPress={this.handlePostdoc} checked={this.state.postdoc} />
                                         <Body>
                                             <Text style={{ color: '#ffffff' }}>Post - Doc</Text>
                                         </Body>
                                     </Content>
                                 </ListItem>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleCertification} checked={this.state.certification} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Certification</Text>
                                     </Body>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleProgrammes} checked={this.state.programmes} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Programmes</Text>
                                     </Body>
                                 </ListItem>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleProjects} checked={this.state.project} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Projects</Text>
                                     </Body>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleStartups} checked={this.state.startup} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Startups</Text>
                                     </Body>
                                 </ListItem>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleScholarships} checked={this.state.scholarship} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Scholarships</Text>
                                     </Body>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleIndustrailFunding} checked={this.state.industrailFunding} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Industrail Funding</Text>
                                     </Body>
                                 </ListItem>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleLocJournal} checked={this.state.locJournal} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Local Journal</Text>
                                     </Body>
-                                    <CheckBox />
+                                    <CheckBox onPress={this.handleIntJournal} checked={this.state.intJournal} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>International Journal</Text>
                                     </Body>
