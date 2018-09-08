@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, Text, List, ListItem, Button, Toast, Left, Input, Fab, Icon, CheckBox, Body, Thumbnail, Label } from 'native-base';
-import { ImageBackground } from 'react-native';
+import { ImageBackground, AsyncStorage } from 'react-native';
 
 import bg from '../assets/images/dashboard-bg.jpg';
 
@@ -50,6 +50,8 @@ class FilterScreen extends Component {
         this.handleIndustrailFunding = this.handleIndustrailFunding.bind(this);
         this.handleLocJournal = this.handleLocJournal.bind(this);
         this.handleIntJournal = this.handleIntJournal.bind(this);
+
+        this.showResult = this.showResult.bind(this);
     }
 
     handleSearch() {
@@ -189,6 +191,17 @@ class FilterScreen extends Component {
         }
     }
 
+    showResult() {
+        AsyncStorage.getItem('search').then(result => {
+            if(result === 'true') {
+                AsyncStorage.getItem('students').then(student => {
+                    console.log(student);
+                    this.props.navigation.navigate('FilterResult',{student});
+                })
+            }
+        })
+    }
+
     render() {
         return (
             <Container>
@@ -200,32 +213,32 @@ class FilterScreen extends Component {
                             <List>
                                 <ListItem >
                                     <Input placeholder="Enter Name" onChangeText={(e) => this.name = e} />
-                                    <Button onPress={() => app.searchByName(this.name)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByName(this.name); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Batch" onChangeText={(e) => this.batch = e} />
-                                    <Button onPress={() => app.searchByBatch(this.batch)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByBatch(this.batch); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Cnic e.g. 12345-1234567-1" onChangeText={(e) => this.cnic = e} />
-                                    <Button onPress={() => app.searchByCnic(this.cnic)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByCnic(this.cnic); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Email" onChangeText={(e) => this.email = e} />
-                                    <Button onPress={() => app.searchByEmail(this.email)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByEmail(this.email); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter GPA" onChangeText={(e) => this.gpa = e} />
-                                    <Button onPress={() => app.searchByGpa(this.gpa)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByGpa(this.gpa); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Group Name" onChangeText={(e) => this.group = e} />
-                                    <Button onPress={() => app.searchByGroup(this.group)}><Icon name='search' /></Button>
+                                    <Button onPress={() => {app.searchByGroup(this.group); this.showResult()}}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>

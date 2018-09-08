@@ -46,7 +46,7 @@ app.searchStudent = async function (student) {
 app.searchByName = async function (name) {
     if (name !== '') {
         name = name.toLowerCase();
-        fetch(`${shared.url}/searchByName`, {
+        await fetch(`${shared.url}/searchByName`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -62,7 +62,8 @@ app.searchByName = async function (name) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
@@ -82,7 +83,7 @@ app.searchByName = async function (name) {
 app.searchByBatch = async function (batch) {
 
     if (batch !== '') {
-        fetch(`${shared.url}/searchByBatch`, {
+        await fetch(`${shared.url}/searchByBatch`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -98,7 +99,8 @@ app.searchByBatch = async function (batch) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
@@ -120,7 +122,7 @@ app.searchByEmail = async function (email) {
 
     if (email !== '') {
         email = email.toLowerCase();
-        fetch(`${shared.url}/searchByEmail`, {
+        await fetch(`${shared.url}/searchByEmail`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -137,7 +139,8 @@ app.searchByEmail = async function (email) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
@@ -158,7 +161,7 @@ app.searchByEmail = async function (email) {
 app.searchByCnic = async function (cnic) {
 
     if (cnic !== '') {
-        fetch(`${shared.url}/searchByCnic`, {
+        await fetch(`${shared.url}/searchByCnic`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -174,7 +177,8 @@ app.searchByCnic = async function (cnic) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
@@ -194,7 +198,7 @@ app.searchByCnic = async function (cnic) {
 app.searchByGpa = async function (gpa) {
 
     if (gpa !== '') {
-        fetch(`${shared.url}/searchByGpa`, {
+        await fetch(`${shared.url}/searchByGpa`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -210,7 +214,8 @@ app.searchByGpa = async function (gpa) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
@@ -231,7 +236,7 @@ app.searchByGroup = async function (group) {
 
     if (group !== '') {
         group = group.toLowerCase();
-        fetch(`${shared.url}/searchByGroup`, {
+        await fetch(`${shared.url}/searchByGroup`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -248,7 +253,8 @@ app.searchByGroup = async function (group) {
                         text: 'Record not found',
                         duration: 3000,
                         position: 'center',
-                        type: 'danger'
+                        type: 'danger',
+                        buttonText: 'Ok'
                     })
                 }
             })
