@@ -123,6 +123,8 @@ router.post('/searchStudents', (req,res,next) => {
 router.post('/searchByName',(req,res,next) => {
     let name = req.body.name;
 
+    console.log(name);
+
     Student.find({'personalInformation' : {'$elemMatch' : {'name' : name}}}, (err,student) => {
         if(err) return next(err);
 

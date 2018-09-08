@@ -54,39 +54,7 @@ class FilterScreen extends Component {
 
     handleSearch() {
         
-        let name = this.name; 
-        let cnic = this.cnic;
-        let batch = this.batch;
-        let group = this.group;
-        let gpa = this.gpa;
-        let email = this.email;
-        
         this.filterCheckData = [];
-
-        if(name !== '') {
-            this.filterCheckData.push({name: name});
-        }
-
-        if(cnic !== '') {
-            this.filterCheckData.push({cnic: cnic});
-        }
-
-        if(batch !== '') {
-            this.filterCheckData.push({batch :batch});
-        }
-
-        if(group !== '') {
-            this.filterCheckData.push({group: group});
-        }
-
-        if(gpa !== '') {
-            this.filterCheckData.push({gpa: gpa});
-        }
-
-        if(email !== '') {
-            this.filterCheckData.push({email: email});
-        }
-
 
         this.filterCheckData.push({
             bachelors: this.state.bachelors,
