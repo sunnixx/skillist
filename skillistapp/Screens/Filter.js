@@ -52,28 +52,174 @@ class FilterScreen extends Component {
         this.handleIntJournal = this.handleIntJournal.bind(this);
 
         this.showResult = this.showResult.bind(this);
+
+        this.searchByName = this.searchByName.bind(this);
+        this.searchByBatch = this.searchByBatch.bind(this);
+        this.searchByCnic = this.searchByCnic.bind(this);
+        this.searchByEmail = this.searchByEmail.bind(this);
+        this.searchByGpa = this.searchByGpa.bind(this);
+        this.searchByGroup = this.searchByGroup.bind(this);
+    }
+
+    searchByName() {
+        if (this.name !== '') {
+            app.searchByName(this.name);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    searchByBatch() {
+        if (this.batch !== '') {
+            app.searchByBatch(this.batch);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    searchByEmail() {
+        if (this.email !== '') {
+            app.searchByEmail(this.email);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    searchByGpa() {
+        if (this.gpa !== '') {
+            app.searchByName(this.gpa);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    searchByGroup() {
+        if (this.group !== '') {
+            app.searchByName(this.group);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    searchByCnic() {
+        if (this.cnic !== '') {
+            app.searchByName(this.cnic);
+        } else {
+            Toast.show({
+                text: 'field cannot be empty',
+                buttonText: 'Ok',
+                type: 'warning',
+                duration: 2000
+            })
+        }
+
+        setTimeout(function () {
+            this.showResult();
+        }.bind(this), 3000);
+    }
+
+    showResult() {
+        AsyncStorage.getItem('search').then(result => {
+            if (result === 'true') {
+                AsyncStorage.getItem('students').then(student => {
+                    AsyncStorage.removeItem('search');
+                    this.props.navigation.navigate('FilterResult', { student });
+                })
+            }
+        })
     }
 
     handleSearch() {
-        
+
         this.filterCheckData = [];
 
+        let checkIfTrue = false;
+
         this.filterCheckData.push({
-            bachelors: this.state.bachelors,
+            // bachelors: this.state.bachelors,
             certification: this.state.certification,
             funding: this.state.funding,
             industrailFunding: this.state.industrailFunding,
             internship: this.state.internship,
             intJournal: this.state.intJournal,
             locJournal: this.state.locJournal,
-            masters: this.state.masters,
-            phd: this.state.phd,
-            postdoc: this.state.postdoc,
+            // masters: this.state.masters,
+            // phd: this.state.phd,
+            // postdoc: this.state.postdoc,
             programmes: this.state.programmes,
-            project: this.state.project
+            project: this.state.project,
+            startup: this.state.startup
         })
 
-        app.searchByFilter(this.filterCheckData);
+        let filter = this.filterCheckData[0];
+
+        for(let i in filter) {
+            if(filter.hasOwnProperty(i)) {
+                if(filter[i] === true) {
+                    checkIfTrue = true;
+                }
+            }
+        }
+
+        if(checkIfTrue !== true) {
+            Toast.show({
+                text: 'Select atleast one option',
+                buttonText: 'Got it',
+                type: 'warning',
+                position: 'bottom'
+            })
+        } else {
+            app.searchByFilter(this.filterCheckData);
+
+            setTimeout(function() {
+                this.showResult();
+            }.bind(this),3000);
+        }
     }
 
     handleBachelors() {
@@ -191,15 +337,9 @@ class FilterScreen extends Component {
         }
     }
 
-    showResult() {
-        AsyncStorage.getItem('search').then(result => {
-            if(result === 'true') {
-                AsyncStorage.getItem('students').then(student => {
-                    console.log(student);
-                    this.props.navigation.navigate('FilterResult',{student});
-                })
-            }
-        })
+    componentWillUnmount() {
+        this.name = '', this.batch = '', this.cnic = '', this.email = '', this.gpa = '', this.group = '';
+        AsyncStorage.setItem('search', 'false');
     }
 
     render() {
@@ -213,35 +353,35 @@ class FilterScreen extends Component {
                             <List>
                                 <ListItem >
                                     <Input placeholder="Enter Name" onChangeText={(e) => this.name = e} />
-                                    <Button onPress={() => {app.searchByName(this.name); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByName}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Batch" onChangeText={(e) => this.batch = e} />
-                                    <Button onPress={() => {app.searchByBatch(this.batch); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByBatch}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Cnic e.g. 12345-1234567-1" onChangeText={(e) => this.cnic = e} />
-                                    <Button onPress={() => {app.searchByCnic(this.cnic); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByCnic}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter Email" onChangeText={(e) => this.email = e} />
-                                    <Button onPress={() => {app.searchByEmail(this.email); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByEmail}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Enter GPA" onChangeText={(e) => this.gpa = e} />
-                                    <Button onPress={() => {app.searchByGpa(this.gpa); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByGpa}><Icon name='search' /></Button>
                                 </ListItem>
 
                                 <ListItem>
                                     <Input placeholder="Group Name" onChangeText={(e) => this.group = e} />
-                                    <Button onPress={() => {app.searchByGroup(this.group); this.showResult()}}><Icon name='search' /></Button>
+                                    <Button onPress={this.searchByGroup}><Icon name='search' /></Button>
                                 </ListItem>
 
-                                <ListItem>
+                                <ListItem style={{borderBottomWidth: 0}}>
                                     <CheckBox onPress={this.handleInternship} checked={this.state.internship} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Internships </Text>
@@ -251,7 +391,7 @@ class FilterScreen extends Component {
                                         <Text style={{ color: '#ffffff' }}>Funding </Text>
                                     </Body>
                                 </ListItem>
-
+{/*                                 
                                 <Label style={{ paddingLeft: 20, color: '#ffffff', fontWeight: 'bold' }}>Degrees: </Label>
                                 <ListItem style={{ borderBottomWidth: 0 }}>
                                     <Content contentContainerStyle={{ flex: 1, flexDirection: 'row' }}>
@@ -264,8 +404,8 @@ class FilterScreen extends Component {
                                             <Text style={{ color: '#ffffff' }}>Masters</Text>
                                         </Body>
                                     </Content>
-                                </ListItem>
-                                <ListItem>
+                                </ListItem> */}
+                                {/* <ListItem>
                                     <Content contentContainerStyle={{ flex: 1, flexDirection: 'row' }}>
                                         <CheckBox onPress={this.handlePhd} checked={this.state.phd} />
                                         <Body>
@@ -276,8 +416,8 @@ class FilterScreen extends Component {
                                             <Text style={{ color: '#ffffff' }}>Post - Doc</Text>
                                         </Body>
                                     </Content>
-                                </ListItem>
-                                <ListItem style={{ borderBottomWidth: 0 }}>
+                                </ListItem> */}
+                                {/* <ListItem style={{ borderBottomWidth: 0 }}>
                                     <CheckBox onPress={this.handleCertification} checked={this.state.certification} />
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Certification</Text>
@@ -286,7 +426,7 @@ class FilterScreen extends Component {
                                     <Body>
                                         <Text style={{ color: '#ffffff' }}>Programmes</Text>
                                     </Body>
-                                </ListItem>
+                                </ListItem> */}
                                 <ListItem style={{ borderBottomWidth: 0 }}>
                                     <CheckBox onPress={this.handleProjects} checked={this.state.project} />
                                     <Body>
@@ -317,18 +457,19 @@ class FilterScreen extends Component {
                                         <Text style={{ color: '#ffffff' }}>International Journal</Text>
                                     </Body>
                                 </ListItem>
+                                <ListItem style={{ borderBottomWidth: 0,paddingLeft: 40 }}>
+
+                                    <Button onPress={this.handleSearch}>
+                                        <Icon name='search' />
+                                        <Text>Search By Filter</Text>
+                                    </Button>
+
+                                </ListItem>
                             </List>
                         </Content>
 
                     </ImageBackground>
                 </Content>
-                <Fab
-                    style={{ backgroundColor: '#2980b9' }}
-                    position="bottomRight"
-                    onPress={this.handleSearch}
-                >
-                    <Icon name="search" color="#ffffff" />
-                </Fab>
             </Container>
         )
     }

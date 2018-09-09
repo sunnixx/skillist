@@ -44,232 +44,204 @@ app.searchStudent = async function (student) {
 }
 
 app.searchByName = async function (name) {
-    if (name !== '') {
-        name = name.toLowerCase();
-        await fetch(`${shared.url}/searchByName`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ name })
-        }).then(response => {
-            response.json().then(message => {
-                if (message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
+    name = name.toLowerCase();
+    await fetch(`${shared.url}/searchByName`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ name })
+    }).then(response => {
+        response.json().then(message => {
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
         })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
 }
 
 app.searchByBatch = async function (batch) {
 
-    if (batch !== '') {
-        await fetch(`${shared.url}/searchByBatch`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ batch })
-        }).then(response => {
-            response.json().then(message => {
-                if (message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
-        })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
 
+    await fetch(`${shared.url}/searchByBatch`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ batch })
+    }).then(response => {
+        response.json().then(message => {
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
+        })
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
 }
 
 app.searchByEmail = async function (email) {
 
-    if (email !== '') {
-        email = email.toLowerCase();
-        await fetch(`${shared.url}/searchByEmail`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: email
-        }).then(response => {
-            response.json().then(message => {
 
-                if(message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
-        })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
+    email = email.toLowerCase();
+    await fetch(`${shared.url}/searchByEmail`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: email
+    }).then(response => {
+        response.json().then(message => {
 
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
+        })
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
 }
 
 app.searchByCnic = async function (cnic) {
 
-    if (cnic !== '') {
-        await fetch(`${shared.url}/searchByCnic`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ cnic })
-        }).then(response => {
-            response.json().then(message => {
-                if(message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
+
+    await fetch(`${shared.url}/searchByCnic`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ cnic })
+    }).then(response => {
+        response.json().then(message => {
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
         })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
 }
 
 app.searchByGpa = async function (gpa) {
 
-    if (gpa !== '') {
-        await fetch(`${shared.url}/searchByGpa`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ gpa })
-        }).then(response => {
-            response.json().then(message => {
-                if(message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
+
+    await fetch(`${shared.url}/searchByGpa`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ gpa })
+    }).then(response => {
+        response.json().then(message => {
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
         })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
 }
 
 app.searchByGroup = async function (group) {
 
-    if (group !== '') {
-        group = group.toLowerCase();
-        await fetch(`${shared.url}/searchByGroup`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ group })
-        }).then(response => {
-            response.json().then(message => {
+    group = group.toLowerCase();
+    await fetch(`${shared.url}/searchByGroup`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ group })
+    }).then(response => {
+        response.json().then(message => {
 
-                if(message.students !== false) {
-                    AsyncStorage.setItem('students', JSON.stringify(message.students));
-                    AsyncStorage.setItem('search', 'true');
-                } else {
-                    Toast.show({
-                        text: 'Record not found',
-                        duration: 3000,
-                        position: 'center',
-                        type: 'danger',
-                        buttonText: 'Ok'
-                    })
-                }
-            })
-        }).catch(err => {
-            if (err) throw new Error(err);
+            if (message.students !== false) {
+                AsyncStorage.setItem('students', JSON.stringify(message.students));
+                AsyncStorage.setItem('search', 'true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    duration: 3000,
+                    position: 'center',
+                    type: 'danger',
+                    buttonText: 'Ok'
+                })
+            }
         })
-    } else {
-        Toast.show({
-            text: 'Field cannot be empty',
-            duration: 2000,
-            position: 'bottom',
-            buttonText: 'Ok'
-        })
-    }
+    }).catch(err => {
+        if (err) throw new Error(err);
+    })
+}
 
+app.searchByFilter = async function(filter) {
+    await fetch(`${shared.url}/searchByFilter`,{
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body: JSON.stringify({filter})
+    }).then(response => {
+        response.json().then(message => {
+            if(message.students !== false) {
+                AsyncStorage.setItem('students',JSON.stringify(message.students));
+                AsyncStorage.setItem('search','true');
+            } else {
+                Toast.show({
+                    text: 'Record not found',
+                    type: 'danger',
+                    duration: 2000,
+                    buttonText: 'Ok',
+                    position: 'top'
+                })
+            }
+        })
+    }).catch(err => {if(err) {throw new Error(err)}})
 }
 
 module.exports = app;
